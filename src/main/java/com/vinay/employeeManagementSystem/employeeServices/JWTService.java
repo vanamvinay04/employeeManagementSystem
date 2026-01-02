@@ -8,4 +8,10 @@ public class JWTService {
     public String generateToken() {
         return "";
     }
+
+    @Nonnull
+    private Key getkey(){
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        return Keys.hmacShaKeyFor(keyBytes);
+    }
 }
