@@ -30,7 +30,8 @@ public class SecurityConfig
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
             return http.csrf(customizer -> customizer.disable())
                         .authorizeHttpRequests(request -> request
-                                                .requestMatchers("/register","/login").permitAll()
+                                                .requestMatchers("/register","/login")
+                                                .permitAll()
                                                 .anyRequest().authenticated())
                         .httpBasic(Customizer.withDefaults())
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -47,7 +48,7 @@ public class SecurityConfig
         }
 
         @Bean
-        public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws AuthenticationException {
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
             return config.getAuthenticationManager();
         }
 
